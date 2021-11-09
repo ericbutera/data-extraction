@@ -1,0 +1,5 @@
+[aws_boto_credentials]
+access_key = xxx
+secret_key = xxx
+bucket_name = xxx
+account_id = xxx

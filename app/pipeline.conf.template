@@ -1,5 +1,14 @@
-[aws_boto_credentials]
-access_key = xxx
-secret_key = xxx
-bucket_name = xxx
-account_id = xxx
+[storage]
+hostname = storage
+access_key =
+secret_key = 
+bucket_name =
+account_id = 
+endpoint_url =
+
+[db]
+hostname = db
+port = 3306
+username = root
+password = password
+database = data_pipeline

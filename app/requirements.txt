@@ -1,0 +1,8 @@
+requests
+pymysql
+configparser
+
+boto3
+psycopg2
+
+minio

@@ -69,3 +69,9 @@ sh seed.sh
 - vscode extension: SQL Tools 
   - mysql
   - postgres
+
+## apache drill
+- [web ui](http://localhost:8047/)
+- [home](https://drill.apache.org/)
+- `docker-compose run --rm drill`
+- this is seriously cool

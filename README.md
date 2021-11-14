@@ -12,6 +12,7 @@
 3. place csv into cloud storage 
    - cloud storage is _data lake_
 4. load OLAP (data warehouse)
+   - [columnar db](https://en.wikipedia.org/wiki/List_of_column-oriented_DBMSes)
    - read from _data lake_ into _data warehouse_
    - the book mentioned using amazon redshift which can load CSV from cloud storage into a Postgres database. this can be 'replicated' like so:
      - manually copy output of a specific python extract csv result into ~/shared/data-warehouse

@@ -1,4 +1,9 @@
 -- p. 120 Data Modeling
+
+-- Questions to answer:
+-- How much revenue was generated from orders placed from a given country in a given month?
+-- How many orders were placed on a given day?
+
 CREATE TABLE Orders (
   OrderId int,
   OrderStatus varchar(30),

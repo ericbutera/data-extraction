@@ -1,43 +1,32 @@
 # data pipelines pocket reference
+- this project contains
+  - minio as "fake s3"
+  - postgres8 as "redshift"
+  - mysql as database
 
 ## workflow
-1. db contains real-time production data
+1. OLTP db contains real-time production data
 2. run extract_mysql_*.py to create *.csv
    1. possibly use replica to not crash prod
    2. utilize binlog optimization
-3. place csv into cloud storage
-4. read from cloud storage into data lake
-   - the book mentioned using amazon redshift which can load CSV from cloud storage into a Postgres database
-   - this project contains
-     - minio as "fake s3"
-     - postgres8 as "redshift"
-     - manually copy output of csv extract into ~/shared/data-warehouse
+3. place csv into cloud storage 
+   - cloud storage is _data lake_
+4. load OLAP (data warehouse)
+   - read from _data lake_ into _data warehouse_
+   - the book mentioned using amazon redshift which can load CSV from cloud storage into a Postgres database. this can be 'replicated' like so:
+     - manually copy output of a specific python extract csv result into ~/shared/data-warehouse
      - run import_order_csv.sh
      - TODO: automate process (or use another tool like stitch?)
        - minio csv -> ~/shared/data-warehouse
        - run import_order_csv on ~/shared/data-warehouse
 
-## setup devcontainer using python
-```bash
-python -m venv env
-source env/bin/activate
-which python
-pip install configparser
-touch pipeline.conf
-python -m pip install --upgrade pip
-```
 
-## container
+## how to run
 ```bash
+sh setup.sh # create persistent storage on host machine
 docker-compose up 
-docker-compose run --rm app
-```
-
-## seed "production" database 
-```bash
-docker-compose exec db sh
-cd /usr/src/shared/db
-sh seed.sh
+docker-compose run --rm app # hop into app container to run scripts
+python extract_rest.py
 ```
 
 ## minio cloud storage
@@ -46,6 +35,14 @@ sh seed.sh
   - bucket
   - service account
 
+
+## seed "production" database 
+```bash
+# TODO there are multiple iterations of tables as the book progresses. use the command in seed.sh to use the correct one
+docker-compose exec db sh
+cd /usr/src/shared/db
+sh seed.sh
+```
 
 ## postgres notes
 ```bash
@@ -64,3 +61,10 @@ sh seed.sh
   - https://www.postgresqltutorial.com/import-csv-file-into-posgresql-table/
   - `copy orders(orderid, orderstatus, lastupdated) FROM '/usr/src/shared/data-warehouse/order_extract.csv' DELIMITER '|';`
   - `select max(lastupdated) from orders;`
+
+
+## sql clients
+- beekeeper studio
+- vscode extension: SQL Tools 
+  - mysql
+  - postgres

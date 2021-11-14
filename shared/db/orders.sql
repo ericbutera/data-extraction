@@ -1,3 +1,4 @@
+-- p.41 Extracting from a MySQL database
 CREATE TABLE Orders (
  OrderId int,
  OrderStatus varchar(30),

@@ -17,16 +17,6 @@
        - minio csv -> ~/shared/data-warehouse
        - run import_order_csv on ~/shared/data-warehouse
 
-## aws
-an aws account is required.
-- [IAM](https://console.aws.amazon.com/iamv2/home?#/home)
-- [S3](https://s3.console.aws.amazon.com/s3/buckets)
-
-# deps
-- [mini io "fake s3"](https://hub.docker.com/r/minio/minio/#test-using-minio-client-mc)
-- [redshift]()
-  
-
 ## setup devcontainer using python
 ```bash
 python -m venv env

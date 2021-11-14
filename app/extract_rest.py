@@ -26,7 +26,7 @@ for response in data['response']:
 
   rows.append(row)
 
-export_file = "extracts/extract_rest.csv"
+export_file = "/usr/src/shared/extracts/extract_rest.csv"
 
 print("rows:")
 print(rows)

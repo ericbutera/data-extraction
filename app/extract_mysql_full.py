@@ -20,7 +20,7 @@ else:
   print("db connection established")
 
 m_query = "SELECT * FROM Orders"
-local_filename = "order_extract_full.csv"
+local_filename = "/usr/src/shared/extracts/order_extract_full.csv"
 
 m_cursor = conn.cursor()
 m_cursor.execute(m_query)

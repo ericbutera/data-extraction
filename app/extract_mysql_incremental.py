@@ -48,7 +48,7 @@ else:
   print("db connection established")
 
 m_query = """SELECT * FROM Orders WHERE LastUpdated > %s"""
-local_filename = "extracts/order_extract_incremental.csv"
+local_filename = "/usr/src/shared/extracts/order_extract_incremental.csv"
 
 m_cursor = conn.cursor()
 m_cursor.execute(m_query, (last_updated_warehouse,))

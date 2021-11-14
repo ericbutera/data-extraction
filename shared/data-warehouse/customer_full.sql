@@ -1,3 +1,4 @@
+-- Full data refresh example
 -- Type II SCD with customer data p. 125 
 CREATE TABLE Customers_scd
 (
@@ -16,10 +17,8 @@ SELECT
  c.CustomerName,
  c.CustomerCountry
 FROM Orders o
-INNER JOIN Customers_scd c
- ON o.CustomerId = c.CustomerId
- AND o.OrderDate BETWEEN c.ValidFrom AND
-c.Expired
+INNER JOIN Customers_scd c ON o.CustomerId = c.CustomerId
+ AND (o.OrderDate BETWEEN c.ValidFrom AND c.Expired)
 ORDER BY o.OrderDate;
 
 -- orderid | orderdate | customer | customer name country

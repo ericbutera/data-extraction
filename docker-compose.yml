@@ -43,6 +43,14 @@ services:
     environment:
       - MINIO_ROOT_USER=user
       - MINIO_ROOT_PASSWORD=password
+  
+  drill: # https://stackoverflow.com/questions/67558406/how-to-start-apache-drill-in-docker-compose
+    image: apache/drill
+    ports:
+      - 8047:8047
+    volumes:
+      - ./shared:/usr/src/shared
+    stdin_open: true
 
   app:
     build: app
@@ -51,6 +59,7 @@ services:
     tty: true 
     volumes:
       - ./app:/usr/src/app
+      - ./shared:/usr/src/shared
 
 volumes:
   app:

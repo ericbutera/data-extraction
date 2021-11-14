@@ -1,0 +1,1 @@
+psql --user=postgres data_warehouse < /usr/src/shared/data-warehouse/import_order_csv.sql

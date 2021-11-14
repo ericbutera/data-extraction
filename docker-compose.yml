@@ -10,7 +10,7 @@ services:
       - 3306:3306
     volumes:
       - c:\docker\data-pipeline\db:/var/lib/mysql
-      - ./db:/usr/src/db
+      - ./shared:/usr/src/shared
     environment:
       - MYSQL_DATABASE=data_pipeline
       - MYSQL_ROOT_PASSWORD=password
@@ -18,14 +18,18 @@ services:
   # data-warehouse
   # OLAP
   data-warehouse:
-    image: guildeducation/docker-amazon-redshift
+    image: postgres
     restart: always
     ports:
-      - 5439:5439
+      # - 5439:5439 redshift port
+      - 5432:5432
     volumes:
-      - ./data-warehouse:/usr/src/data-warehouse
+      - c:\docker\data-pipeline\data-warehouse:/var/lib/postgresql/data
+      - ./shared:/usr/src/shared
     environment:
       - POSTGRES_PASSWORD=password
+      - POSTGRES_DB=data_warehouse
+      - POSTGRES_USER=postgres
 
   storage:
     image: quay.io/minio/minio
@@ -50,3 +54,4 @@ services:
 
 volumes:
   app:
+  shared:
